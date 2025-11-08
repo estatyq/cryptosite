@@ -41,7 +41,7 @@ const accessHighlights = [
 ];
 
 const priceMilestones = [249, 457, 655, 990, 1395, 1999];
-const paymentAddress = "TKB8LTG1HRpySZ3w6jjaGsvuqdZRt48hiv";
+const paymentAddress = "TQjvmy6n1zpvNQ7daVmjALhe8gvQAVLrgY";
 const supportTemplate = `Привіт! Оплатив доступ до MF Prime Club.
 Сума: 249 USDT (TRC20)
 Хеш транзакції: ...
@@ -54,7 +54,7 @@ const closingHighlights = [
 
 export default function App() {
   const [activeLogo, setActiveLogo] = useState(0);
-  const [isLuminous, setIsLuminous] = useState(false);
+  const [isLuminous] = useState(true);
   const [addressCopyLabel, setAddressCopyLabel] = useState("Копіювати адресу");
   const [templateCopyLabel, setTemplateCopyLabel] = useState("Скопіювати шаблон повідомлення");
 
@@ -149,9 +149,6 @@ export default function App() {
         )
     );
   };
-
-  const toggleLabel = "Світло";
-  const toggleHint = "Ефект сяйва";
 
   return (
     <div className="page">
@@ -251,17 +248,6 @@ export default function App() {
               ))}
             </div>
 
-            <button
-              className="toggle-control"
-              type="button"
-              aria-pressed={isLuminous}
-              aria-label="Перемкнути підсвічування карти"
-              onClick={() => setIsLuminous((value) => !value)}
-            >
-              <span className="toggle-thumb" aria-hidden="true" />
-              <span className="toggle-label">{toggleLabel}</span>
-              <span className="toggle-hint">{toggleHint}</span>
-            </button>
           </aside>
         </div>
 
@@ -340,41 +326,21 @@ export default function App() {
                 <button className="copy-button" type="button" onClick={handleAddressCopy}>
                   {addressCopyLabel}
                 </button>
-                <div className="wallet-links">
-                  <a 
-                    href={`https://link.trustwallet.com/send?asset=c195&address=${paymentAddress}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="wallet-link"
-                    title="Відкрити в Trust Wallet"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-                      <path d="M16 0L4 6v10c0 7.732 5.227 14.965 12 16 6.773-1.035 12-8.268 12-16V6L16 0z" fill="#3375BB"/>
-                    </svg>
-                  </a>
-                  <a 
-                    href={`https://metamask.app.link/send/${paymentAddress}@195`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="wallet-link"
-                    title="Відкрити в MetaMask"
-                  >
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-                      <path d="M27.1 2.5l-10.3 7.6 1.9-4.5z" fill="#E17726"/>
-                      <path d="M4.9 2.5l10.2 7.7-1.8-4.6zM23.3 21.8l-2.7 4.1 5.8 1.6 1.7-5.6zM3.9 21.9l1.6 5.6 5.8-1.6-2.7-4.1z" fill="#E27625"/>
-                      <path d="M11 14.1l-1.6 2.4 5.7.3-.2-6.2zM21 14.1l-4-3.6-.1 6.3 5.7-.3zM11.3 25.9l3.5-1.7-3-2.3zM17.2 24.2l3.5 1.7-.5-4z" fill="#E27625"/>
-                      <path d="M20.7 25.9l-3.5-1.7.3 2.3-.1.6zM11.3 25.9l3.3.6v-.6l.3-2.3z" fill="#D5BFB2"/>
-                      <path d="M14.7 19.7l-2.9-.9 2-1zM17.3 19.7l.9-1.9 2.1 1z" fill="#233447"/>
-                      <path d="M11.3 25.9l.5-4-3.3.1zM20.2 21.9l.5 4 2.8-3.9zM22.6 16.5l-5.7.3.5 2.9.9-1.9 2.1 1zM11.8 17.8l2.1-1 .9 1.9.5-2.9-5.7-.3z" fill="#CC6228"/>
-                      <path d="M9.4 16.5l2.5 4.8-.1-2.4zM20.5 18.9l-.1 2.4 2.5-4.8zM15.2 16.8l-.5 2.9.6 3.2.1-3.9zM16.8 16.8l-.2 2.2.2 3.9.6-3.2z" fill="#E27525"/>
-                      <path d="M17.3 19.7l-.6 3.2.4.3 3-2.3.1-2.4zM11.8 17.8l.1 2.4 3 2.3.4-.3-.6-3.2z" fill="#F5841F"/>
-                      <path d="M17.4 26.5l.1-.6-.2-.2h-2.6l-.2.2.1.6-3.3-.6.9.8 2.4 1.6h2.7l2.4-1.6.9-.8z" fill="#C0AC9D"/>
-                      <path d="M17.2 24.2l-.4-.3h-1.6l-.4.3-.3 2.3.2-.2h2.6l.2.2z" fill="#161616"/>
-                      <path d="M27.6 10.6l.9-4.3L27.1 2.5l-9.9 7.4 3.8 3.2 5.4 1.6 1.2-1.4-.5-.4.8-.8-.6-.5.8-.6zM3.5 6.3l.9 4.3-.6.4.8.6-.6.5.8.8-.5.4 1.2 1.4 5.4-1.6 3.8-3.2L4.9 2.5z" fill="#763E1A"/>
-                      <path d="M26.5 13.7l-5.4-1.6 1.6 2.4-2.5 4.8 3.3-.1h4.9zM10.9 12.1l-5.4 1.6-1.5 5.6h4.9l3.3.1-2.5-4.8zM16.8 16.8l.4-6.9 1.7-4.7h-7.8l1.7 4.7.4 6.9.1 2.2v3.9h1.6v-3.9z" fill="#F5841F"/>
-                    </svg>
-                  </a>
-                </div>
+                <a
+                  href="https://bingx.com/partner/mishafyk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="exchange-link"
+                  title="Відкрити сторінку партнера BingX"
+                >
+                  <span className="exchange-icon" aria-hidden="true">
+                    <img src="/bingx.svg" alt="" loading="lazy" />
+                  </span>
+                  <span className="exchange-text">
+                    <span>Відкрити BingX</span>
+                    <span>Партнерська сторінка Mishafyk</span>
+                  </span>
+                </a>
               </div>
             </div>
             <div className="payment-support">
