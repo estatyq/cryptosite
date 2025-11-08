@@ -1,0 +1,24 @@
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Dependencies (if using Node.js in future)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build/Dist (if compiling in future)
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MF PRIME CLUB — Premium Crypto Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-main: radial-gradient(
+            circle at 25% 20%,
+            rgba(72, 72, 80, 0.28) 0%,
+            rgba(19, 19, 22, 0) 42%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(45, 45, 52, 0) 35%
+          ),
+          linear-gradient(145deg, #050507 0%, #08080c 45%, #11121b 100%);
+        --text-primary: #f5f6f8;
+        --text-secondary: rgba(216, 224, 240, 0.78);
+        --text-accent: #6aa9ff;
+        --text-muted: rgba(255, 255, 255, 0.55);
+        --cta-start: #fefefe;
+        --cta-end: #bfc6ff;
+        --cta-shadow: rgba(190, 202, 255, 0.35);
+        --gold: #f7d56a;
+        --glass-bg: rgba(18, 20, 32, 0.62);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-highlight: rgba(255, 255, 255, 0.24);
+        --card-glow: rgba(116, 193, 255, 0.18);
+        --card-glow-strong: rgba(255, 255, 255, 0.42);
+        --noise-url: radial-gradient(
+          rgba(255, 255, 255, 0.08) 0.5px,
+          transparent 0.5px
+        );
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: #06060a;
+        color: var(--text-primary);
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(2rem, 3vw, 3.5rem);
+        position: relative;
+        overflow-x: hidden;
+        background-image: var(--bg-main);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -20%;
+        background: radial-gradient(
+          circle at 50% 20%,
+          rgba(255, 255, 255, 0.07),
+          rgba(0, 0, 0, 0) 60%
+        );
+        opacity: 0.4;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: var(--noise-url);
+        background-size: 3px 3px;
+        opacity: 0.08;
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .page {
+        width: min(1180px, 100%);
+        position: relative;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: clamp(320px, 50%, 520px) 1fr;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        align-items: center;
+        padding: clamp(2.75rem, 5vw, 4rem);
+        backdrop-filter: blur(20px);
+        border-radius: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: linear-gradient(
+            140deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0) 45%
+          ),
+          rgba(6, 6, 12, 0.82);
+        box-shadow: 0 42px 120px rgba(13, 17, 44, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.5rem, 3vw, 2.25rem);
+        animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+      }
+
+      .hero-title {
+        font-family: "Montserrat", "Inter", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: clamp(0.26rem, 0.75vw, 0.42rem);
+        text-transform: uppercase;
+        line-height: 1.02;
+        font-size: clamp(2.6rem, 5vw, 4.8rem);
+        margin: 0;
+        background: linear-gradient(
+          110deg,
+          #f5f7fa 0%,
+          #cfd3db 20%,
+          #a9b1c1 45%,
+          #5e6377 82%,
+          #212334 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 18px 32px rgba(11, 13, 22, 0.75));
+      }
+
+      .hero-sequence {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .hero-sequence-arrow {
+        font-size: 1.25rem;
+        letter-spacing: 0.2em;
+        color: rgba(146, 169, 226, 0.65);
+        margin-left: 0.15rem;
+      }
+
+      .hero-accent {
+        margin: 0;
+        font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-accent);
+      }
+
+      .hero-description {
+        margin: clamp(1.6rem, 3vw, 2.1rem) 0 0;
+        max-width: 44ch;
+        font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+        line-height: 1.68;
+        letter-spacing: 0.01em;
+        color: var(--text-secondary);
+      }
+
+      .hero-benefits {
+        margin: clamp(1.6rem, 3vw, 2.4rem) 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        font-size: 0.96rem;
+        color: rgba(221, 229, 251, 0.76);
+      }
+
+      .hero-benefits li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        line-height: 1.55;
+        opacity: 0;
+        animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+
+      .hero-benefits li:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+
+      .hero-benefits li:nth-child(2) {
+        animation-delay: 0.45s;
+      }
+
+      .hero-benefits li:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      .cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .cta-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.85rem 1.6rem 0.85rem 0.75rem;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(140deg, var(--cta-start) 0%, var(--cta-end) 95%);
+        color: #161826;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+        box-shadow: 0 18px 60px var(--cta-shadow),
+          inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 255, 255, 0.4),
+          transparent 70%
+        );
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .cta-button::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 17px;
+        background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.9),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.45s ease;
+      }
+
+      .cta-button:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.6);
+        outline-offset: 2px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 28px 80px rgba(124, 146, 255, 0.45),
+                    0 0 0 1px rgba(255, 255, 255, 0.3);
+      }
+
+      .cta-button:hover::before {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+
+      .cta-button:hover::after {
+        opacity: 0.6;
+      }
+
+      .cta-button:active {
+        transform: translateY(-2px) scale(0.98);
+        box-shadow: 0 18px 40px rgba(124, 146, 255, 0.35);
+        transition: all 0.15s ease;
+      }
+
+      .cta-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        padding: 0.35rem;
+        background: rgba(22, 25, 40, 0.12);
+        display: grid;
+        place-items: center;
+        box-shadow: inset 0 0 0 1px rgba(22, 26, 40, 0.08);
+        transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .cta-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: none;
+        transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .cta-button:hover .cta-logo {
+        transform: rotate(-10deg) scale(1.1);
+      }
+
+      .cta-button:hover .cta-logo img {
+        filter: drop-shadow(0 0 16px rgba(126, 164, 255, 0.7)) brightness(1.2);
+      }
+
+      .cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .cta-text span:first-child {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: rgba(22, 25, 40, 0.6);
+      }
+
+      .cta-text span:last-child {
+        font-size: 1.07rem;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      .cta-button .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        pointer-events: none;
+        animation: ripple 0.8s ease-out;
+      }
+
+      .hero-tagline {
+        margin: 0;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.96rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .luminous-card {
+        position: relative;
+        padding: clamp(2.2rem, 4vw, 2.8rem);
+        border-radius: 26px;
+        background: 
+          radial-gradient(circle at 50% 35%, rgba(246,217,137,.35) 0%, rgba(24,18,6,0) 60%),
+          linear-gradient(180deg, #15181f 0%, #0b0d11 100%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 
+          inset 0 0 0 1px rgba(255,255,255,.06),
+          inset 0 -60px 120px rgba(0,0,0,.25),
+          0 18px 40px rgba(0,0,0,.45);
+        backdrop-filter: blur(32px);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.75rem, 3vw, 2.2rem);
+        transform-style: preserve-3d;
+        transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+        animation: fadeInScale 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+      }
+
+      .luminous-card::before {
+        content: "";
+        position: absolute;
+        inset: -15%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(246, 217, 137, 0.4),
+          rgba(246, 217, 137, 0) 50%
+        );
+        transform: translateZ(-40px) scale(0.8);
+        opacity: 0;
+        transition: all 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+        pointer-events: none;
+        filter: blur(30px);
+      }
+
+      .luminous-card.is-lit {
+        background:
+          radial-gradient(circle at 50% 40%, rgba(246,217,137,.55) 0%, transparent 60%),
+          radial-gradient(circle at 50% 35%, rgba(246,217,137,.35) 0%, rgba(24,18,6,0) 62%),
+          linear-gradient(180deg, #12161d, #0a0d12);
+        box-shadow: 
+          inset 0 0 0 1px rgba(246,217,137,.35),
+          inset 0 -60px 120px rgba(0,0,0,.25),
+          0 20px 48px rgba(246,217,137,.28),
+          0 0 80px rgba(246,217,137,.15);
+        transform: translateY(-6px);
+      }
+
+      .luminous-card.is-lit::before {
+        opacity: 1;
+        transform: translateZ(-40px) scale(1.2);
+      }
+
+      .logo-carousel {
+        position: relative;
+        width: clamp(92px, 26vw, 128px);
+        aspect-ratio: 1 / 1;
+        margin-bottom: 0.3rem;
+        transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .luminous-card:hover .logo-carousel {
+        transform: scale(1.05) rotate(2deg);
+      }
+
+      .logo-slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 18px rgba(246, 217, 137, 0.25));
+        opacity: 0;
+        transform: translateY(8px) scale(0.95);
+        transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .logo-slide.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .luminous-card.is-lit .logo-slide.active {
+        filter: drop-shadow(0 0 28px rgba(246, 217, 137, 0.65)) 
+                drop-shadow(0 0 48px rgba(246, 217, 137, 0.35)) 
+                brightness(1.15);
+      }
+
+      .luminous-card:hover .logo-slide.active {
+        filter: drop-shadow(0 0 24px rgba(246, 217, 137, 0.4)) brightness(1.1);
+      }
+
+      .luminous-card.is-lit:hover .logo-slide.active {
+        filter: drop-shadow(0 0 32px rgba(246, 217, 137, 0.8)) 
+                drop-shadow(0 0 56px rgba(246, 217, 137, 0.45)) 
+                brightness(1.2);
+      }
+
+      .card-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(246, 217, 137, 0) 0%,
+          rgba(246, 217, 137, 0.5) 35%,
+          rgba(255, 255, 255, 0.15) 50%,
+          rgba(246, 217, 137, 0.08) 100%
+        );
+        border-radius: 999px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-divider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(246, 217, 137, 0.6) 50%,
+          transparent 100%
+        );
+        animation: shimmer 3s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0%, 100% {
+          left: -100%;
+          opacity: 0;
+        }
+        50% {
+          left: 100%;
+          opacity: 1;
+        }
+      }
+
+      .card-title {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        letter-spacing: 0.38em;
+        margin: 0;
+        text-transform: uppercase;
+        background: linear-gradient(
+          135deg,
+          rgba(246, 217, 137, 1) 0%,
+          rgba(255, 255, 255, 0.95) 40%,
+          rgba(246, 217, 137, 0.8) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 40px rgba(246, 217, 137, 0.3);
+        filter: drop-shadow(0 2px 8px rgba(246, 217, 137, 0.2));
+      }
+
+      .card-subtext {
+        margin: 0.5rem 0 0;
+        font-size: clamp(0.95rem, 1.45vw, 1.15rem);
+        color: rgba(228, 234, 255, 0.88);
+        line-height: 1.65;
+        max-width: 30ch;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+
+      .card-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        font-size: 0.96rem;
+        color: rgba(230, 236, 255, 0.82);
+      }
+
+      .card-details span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        line-height: 1.5;
+        font-weight: 400;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        padding: 0.35rem 0;
+        margin-left: -0.35rem;
+        padding-left: 0.35rem;
+        border-radius: 8px;
+      }
+
+      .card-details span:hover {
+        transform: translateX(6px);
+        background: rgba(246, 217, 137, 0.08);
+        color: rgba(246, 217, 137, 0.95);
+        padding-left: 0.7rem;
+      }
+
+      .toggle-control {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        border-radius: 999px;
+        background: 
+          radial-gradient(circle at 30% 40%, rgba(246, 217, 137, 0.08) 0%, transparent 50%),
+          rgba(12, 15, 26, 0.75);
+        border: 1px solid rgba(246, 217, 137, 0.15);
+        padding: 0.65rem 1rem 0.65rem 0.65rem;
+        font-size: 0.88rem;
+        color: rgba(230, 236, 255, 0.85);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .toggle-control:hover {
+        border-color: rgba(246, 217, 137, 0.35);
+        background: 
+          radial-gradient(circle at 30% 40%, rgba(246, 217, 137, 0.15) 0%, transparent 50%),
+          rgba(15, 18, 28, 0.85);
+        box-shadow: 
+          0 8px 24px rgba(246, 217, 137, 0.2),
+          inset 0 1px 0 rgba(246, 217, 137, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .toggle-thumb {
+        width: 42px;
+        height: 24px;
+        border-radius: 999px;
+        background: linear-gradient(
+          140deg,
+          rgba(80, 88, 140, 0.4),
+          rgba(50, 54, 90, 0.3)
+        );
+        position: relative;
+        box-shadow: 
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .toggle-thumb::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: linear-gradient(
+          140deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(200, 210, 240, 0.85)
+        );
+        transform: translateY(-50%);
+        box-shadow: 
+          0 3px 8px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+        transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-thumb {
+        background: linear-gradient(
+          140deg,
+          rgba(246, 217, 137, 0.9),
+          rgba(240, 200, 100, 0.8)
+        );
+        box-shadow: 
+          inset 0 0 20px rgba(255, 235, 180, 0.6),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+          0 0 20px rgba(246, 217, 137, 0.4);
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-thumb::after {
+        transform: translate(18px, -50%);
+        background: linear-gradient(
+          140deg,
+          rgba(255, 255, 255, 1),
+          rgba(255, 245, 220, 0.95)
+        );
+        box-shadow: 
+          0 4px 12px rgba(246, 217, 137, 0.6),
+          0 0 16px rgba(246, 217, 137, 0.4),
+          0 0 0 1px rgba(246, 217, 137, 0.3);
+      }
+
+      .toggle-label {
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        transition: color 0.3s ease;
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-label {
+        color: rgba(246, 217, 137, 1);
+        text-shadow: 0 0 20px rgba(246, 217, 137, 0.5);
+      }
+
+      .toggle-hint {
+        font-size: 0.82rem;
+        color: rgba(200, 210, 240, 0.65);
+        transition: color 0.3s ease;
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-hint {
+        color: rgba(246, 217, 137, 0.8);
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% {
+          box-shadow: 
+            inset 0 0 20px rgba(255, 235, 180, 0.6),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+            0 0 20px rgba(246, 217, 137, 0.4);
+        }
+        50% {
+          box-shadow: 
+            inset 0 0 30px rgba(255, 235, 180, 0.8),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+            0 0 30px rgba(246, 217, 137, 0.6);
+        }
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-thumb {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      @media (max-width: 1080px) {
+        body {
+          padding: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        .layout {
+          grid-template-columns: 1fr;
+          padding: clamp(2.2rem, 6vw, 3rem);
+        }
+
+        .hero-copy {
+          order: 2;
+        }
+
+        .luminous-card {
+          order: 1;
+        }
+
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 1.5rem 1.2rem;
+        }
+
+        .layout {
+          border-radius: 26px;
+          padding: 2rem;
+        }
+
+        .hero-title {
+          letter-spacing: 0.18rem;
+        }
+
+        .hero-sequence {
+          gap: 0.6rem;
+        }
+
+        .hero-benefits {
+          gap: 0.75rem;
+        }
+
+        .cta-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .cta-text {
+          align-items: center;
+          text-align: center;
+        }
+
+        .hero-tagline {
+          letter-spacing: 0.18em;
+        }
+
+        .card-details span {
+          align-items: flex-start;
+        }
+
+        .toggle-control {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <main class="layout">
+        <section class="hero-copy">
+          <div class="hero-sequence" aria-label="Основний call-to-action">
+            <h1 class="hero-title">MF PRIME CLUB</h1>
+            <span class="hero-sequence-arrow" aria-hidden="true">↓</span>
+            <p class="hero-accent">Доступ назавжди</p>
+            <span class="hero-sequence-arrow" aria-hidden="true">↓</span>
+            <div class="cta-group">
+              <button class="cta-button" type="button">
+                <span class="cta-logo">
+                  <img src="2.png" alt="Логотип MF Prime Club" loading="lazy" />
+                </span>
+                <span class="cta-text">
+                  <span>Отримати доступ</span>
+                  <span>Вступити до клубу</span>
+                </span>
+              </button>
+              <p class="hero-tagline">no risk — no porsche</p>
+            </div>
+          </div>
+          <p class="hero-description">
+            Закритий простір для трейдерів і фаундерів, де обмінюємося робочими стратегіями,
+            підтримуємо один одного та фіксуємо можливості ще до того, як їх помічає ринок.
+          </p>
+          <ul class="hero-benefits" aria-label="Основні переваги">
+            <li>📊 Живі сесії з розбором угод та управління ризиками</li>
+            <li>🧠 Закритий чат без випадкових людей і без шуму</li>
+            <li>🚀 Доступ до нових наративів першої хвилі та запусків</li>
+          </ul>
+        </section>
+
+        <aside class="luminous-card" aria-live="polite">
+          <div class="logo-carousel" aria-hidden="true">
+            <img
+              src="1.png"
+              alt="Логотип клубу — варіант 1"
+              class="logo-slide active"
+              loading="lazy"
+            />
+            <img
+              src="2.png"
+              alt="Логотип клубу — варіант 2"
+              class="logo-slide"
+              loading="lazy"
+            />
+            <img
+              src="3.png"
+              alt="Логотип клубу — варіант 3"
+              class="logo-slide"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card-divider"></div>
+
+          <div>
+            <p class="card-title">PREMIUM ACCESS</p>
+            <p class="card-subtext">Закритий криптоклуб для обраних трейдерів.</p>
+          </div>
+
+          <div class="card-details">
+            <span>⚡ Ексклюзивні угоди в реальному часі</span>
+            <span>🧠 Інсайти з особистої практики</span>
+            <span>🛰️ Навігація по нових ринкових трендах</span>
+          </div>
+
+          <button
+            class="toggle-control"
+            type="button"
+            aria-pressed="false"
+            aria-label="Перемкнути підсвічування карти"
+          >
+            <span class="toggle-thumb"></span>
+            <span class="toggle-label">Світло</span>
+            <span class="toggle-hint">Ефект сяйва</span>
+          </button>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const slides = Array.from(document.querySelectorAll(".logo-slide"));
+        const toggleBtn = document.querySelector(".toggle-control");
+        const luminousCard = document.querySelector(".luminous-card");
+        const ctaButton = document.querySelector(".cta-button");
+        let currentIndex = 0;
+
+        // Logo carousel
+        if (slides.length > 1) {
+          setInterval(() => {
+            slides[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add("active");
+          }, 3500);
+        }
+
+        // Toggle luminous effect
+        if (toggleBtn && luminousCard) {
+          toggleBtn.addEventListener("click", (e) => {
+            const isPressed = toggleBtn.getAttribute("aria-pressed") === "true";
+            toggleBtn.setAttribute("aria-pressed", String(!isPressed));
+            luminousCard.classList.toggle("is-lit", !isPressed);
+            
+            // Add haptic feedback effect
+            toggleBtn.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              toggleBtn.style.transform = "";
+            }, 150);
+          });
+        }
+
+        // Ripple effect on CTA button
+        if (ctaButton) {
+          ctaButton.addEventListener("click", (e) => {
+            const rect = ctaButton.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement("span");
+            ripple.className = "ripple-effect";
+            ripple.style.left = x + "px";
+            ripple.style.top = y + "px";
+            ripple.style.width = "10px";
+            ripple.style.height = "10px";
+            
+            ctaButton.appendChild(ripple);
+            
+            setTimeout(() => {
+              ripple.remove();
+            }, 800);
+          });
+        }
+
+        // Smooth scroll reveal for elements
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+
+        // Optional: observe elements if needed
+        document.querySelectorAll(".card-details span").forEach(el => {
+          observer.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

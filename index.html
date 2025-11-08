@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MF PRIME CLUB — Premium Crypto Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-main: radial-gradient(
+            circle at 25% 20%,
+            rgba(72, 72, 80, 0.28) 0%,
+            rgba(19, 19, 22, 0) 42%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(45, 45, 52, 0) 35%
+          ),
+          linear-gradient(145deg, #050507 0%, #08080c 45%, #11121b 100%);
+        --text-primary: #f5f6f8;
+        --text-secondary: rgba(216, 224, 240, 0.78);
+        --text-accent: #6aa9ff;
+        --text-muted: rgba(255, 255, 255, 0.55);
+        --cta-start: #fefefe;
+        --cta-end: #bfc6ff;
+        --cta-shadow: rgba(190, 202, 255, 0.35);
+        --gold: #f7d56a;
+        --glass-bg: rgba(18, 20, 32, 0.62);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-highlight: rgba(255, 255, 255, 0.24);
+        --card-glow: rgba(116, 193, 255, 0.18);
+        --card-glow-strong: rgba(255, 255, 255, 0.42);
+        --noise-url: radial-gradient(
+          rgba(255, 255, 255, 0.08) 0.5px,
+          transparent 0.5px
+        );
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: #06060a;
+        color: var(--text-primary);
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(2rem, 3vw, 3.5rem);
+        position: relative;
+        overflow-x: hidden;
+        background-image: var(--bg-main);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -20%;
+        background: radial-gradient(
+          circle at 50% 20%,
+          rgba(255, 255, 255, 0.07),
+          rgba(0, 0, 0, 0) 60%
+        );
+        opacity: 0.4;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: var(--noise-url);
+        background-size: 3px 3px;
+        opacity: 0.08;
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .page {
+        width: min(1180px, 100%);
+        position: relative;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: clamp(320px, 50%, 520px) 1fr;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        align-items: center;
+        padding: clamp(2.75rem, 5vw, 4rem);
+        backdrop-filter: blur(20px);
+        border-radius: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: linear-gradient(
+            140deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0) 45%
+          ),
+          rgba(6, 6, 12, 0.82);
+        box-shadow: 0 42px 120px rgba(13, 17, 44, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.5rem, 3vw, 2.25rem);
+      }
+
+      .hero-title {
+        font-family: "Montserrat", "Inter", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: clamp(0.26rem, 0.75vw, 0.42rem);
+        text-transform: uppercase;
+        line-height: 1.02;
+        font-size: clamp(2.6rem, 5vw, 4.8rem);
+        margin: 0;
+        background: linear-gradient(
+          110deg,
+          #f5f7fa 0%,
+          #cfd3db 20%,
+          #a9b1c1 45%,
+          #5e6377 82%,
+          #212334 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 18px 32px rgba(11, 13, 22, 0.75));
+      }
+
+      .hero-sequence {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .hero-sequence-arrow {
+        font-size: 1.25rem;
+        letter-spacing: 0.2em;
+        color: rgba(146, 169, 226, 0.65);
+        margin-left: 0.15rem;
+      }
+
+      .hero-accent {
+        margin: 0;
+        font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-accent);
+      }
+
+      .hero-description {
+        margin: clamp(1.6rem, 3vw, 2.1rem) 0 0;
+        max-width: 44ch;
+        font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+        line-height: 1.68;
+        letter-spacing: 0.01em;
+        color: var(--text-secondary);
+      }
+
+      .hero-benefits {
+        margin: clamp(1.6rem, 3vw, 2.4rem) 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        font-size: 0.96rem;
+        color: rgba(221, 229, 251, 0.76);
+      }
+
+      .hero-benefits li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        line-height: 1.55;
+      }
+
+      .cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .cta-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.85rem 1.6rem 0.85rem 0.75rem;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(140deg, var(--cta-start) 0%, var(--cta-end) 95%);
+        color: #161826;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+        box-shadow: 0 18px 60px var(--cta-shadow),
+          inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .cta-button::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 17px;
+        background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.9),
+          transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .cta-button:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.6);
+        outline-offset: 2px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 28px 80px rgba(124, 146, 255, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+
+      .cta-button:hover::after {
+        opacity: 0.6;
+      }
+
+      .cta-button:active {
+        transform: translateY(-2px) scale(0.99);
+        box-shadow: 0 18px 40px rgba(124, 146, 255, 0.35);
+        transition: all 0.15s ease;
+      }
+
+      .cta-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        padding: 0.35rem;
+        background: rgba(22, 25, 40, 0.12);
+        display: grid;
+        place-items: center;
+        box-shadow: inset 0 0 0 1px rgba(22, 26, 40, 0.08);
+      }
+
+      .cta-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: none;
+        transition: filter 0.28s ease;
+      }
+
+      .cta-button:hover .cta-logo img {
+        filter: drop-shadow(0 0 12px rgba(126, 164, 255, 0.5));
+      }
+
+      .cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .cta-text span:first-child {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: rgba(22, 25, 40, 0.6);
+      }
+
+      .cta-text span:last-child {
+        font-size: 1.07rem;
+      }
+
+      .hero-tagline {
+        margin: 0;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.96rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .luminous-card {
+        position: relative;
+        padding: 0;
+        border-radius: 26px;
+        background: radial-gradient(circle at 50% 35%, rgba(246,217,137,.18) 0%, rgba(24,18,6,0) 60%),
+          linear-gradient(180deg, #15181f 0%, #0b0d11 100%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.05),
+          inset 0 -60px 120px rgba(0,0,0,.25),
+          0 18px 40px rgba(0,0,0,.45);
+        backdrop-filter: blur(32px);
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transform-style: preserve-3d;
+        transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        overflow: hidden;
+      }
+
+      .luminous-card::before {
+        content: "";
+        position: absolute;
+        inset: -12%;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(246, 217, 137, 0.15),
+          rgba(16, 22, 32, 0) 50%
+        );
+        transform: translateZ(-40px);
+        opacity: 0;
+        transition: opacity 0.45s ease;
+        pointer-events: none;
+        filter: blur(30px);
+      }
+
+      .luminous-card.is-lit {
+        background: radial-gradient(circle at 50% 40%, rgba(246,217,137,.42) 0%, transparent 60%),
+          radial-gradient(circle at 50% 35%, rgba(246,217,137,.25) 0%, rgba(24,18,6,0) 62%),
+          linear-gradient(180deg, #12161d, #0a0d12);
+        box-shadow: inset 0 0 0 1px rgba(246,217,137,.28),
+          inset 0 -60px 120px rgba(0,0,0,.25),
+          0 20px 48px rgba(246,217,137,.22),
+          0 0 60px rgba(246,217,137,.12);
+        transform: translateY(-6px);
+      }
+
+      .luminous-card.is-lit::before {
+        opacity: 0.5;
+      }
+
+      .logo-carousel {
+        position: relative;
+        width: 100%;
+        height: clamp(120px, 20vw, 160px);
+        margin: 0;
+        border-radius: 26px 26px 0 0;
+        overflow: hidden;
+      }
+
+      .logo-slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: drop-shadow(0 0 18px rgba(120, 160, 255, 0.2));
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 1s ease-in-out, transform 1s ease;
+      }
+
+      .logo-slide.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .luminous-card.is-lit .logo-slide.active {
+        filter: drop-shadow(0 0 22px rgba(246, 217, 137, 0.5)) brightness(1.06);
+      }
+
+      .card-content {
+        padding: clamp(2.2rem, 4vw, 2.8rem);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.75rem, 3vw, 2.2rem);
+      }
+
+      .card-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.45) 35%,
+          rgba(255, 255, 255, 0.06) 100%
+        );
+        border-radius: 999px;
+      }
+
+      .card-title {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        letter-spacing: 0.38em;
+        margin: 0;
+        text-transform: uppercase;
+        background: linear-gradient(
+          135deg,
+          rgba(246, 217, 137, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 45%,
+          rgba(246, 217, 137, 0.85) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 2px 6px rgba(246, 217, 137, 0.2));
+        font-weight: 700;
+      }
+
+      .card-subtext {
+        margin: 0.4rem 0 0;
+        font-size: clamp(0.98rem, 1.5vw, 1.15rem);
+        color: rgba(235, 240, 255, 0.85);
+        line-height: 1.6;
+        max-width: 28ch;
+        font-weight: 400;
+      }
+
+      .card-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        color: rgba(214, 220, 248, 0.72);
+      }
+
+      .card-details span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+
+      .toggle-control {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 40%, rgba(246, 217, 137, 0.06) 0%, transparent 50%),
+          rgba(12, 15, 26, 0.7);
+        border: 1px solid rgba(246, 217, 137, 0.12);
+        padding: 0.6rem 1rem 0.6rem 0.6rem;
+        font-size: 0.88rem;
+        color: rgba(225, 232, 255, 0.85);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .toggle-control:hover {
+        border-color: rgba(246, 217, 137, 0.3);
+        background: radial-gradient(circle at 30% 40%, rgba(246, 217, 137, 0.12) 0%, transparent 50%),
+          rgba(15, 18, 28, 0.8);
+        box-shadow: 0 8px 24px rgba(246, 217, 137, 0.15),
+          inset 0 1px 0 rgba(246, 217, 137, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .toggle-thumb {
+        width: 40px;
+        height: 23px;
+        border-radius: 999px;
+        background: linear-gradient(
+          140deg,
+          rgba(80, 88, 140, 0.35),
+          rgba(50, 54, 90, 0.25)
+        );
+        position: relative;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+          inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .toggle-thumb::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: linear-gradient(
+          140deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(200, 210, 240, 0.85)
+        );
+        transform: translateY(-50%);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-thumb {
+        background: linear-gradient(
+          140deg,
+          rgba(246, 217, 137, 0.88),
+          rgba(240, 200, 100, 0.78)
+        );
+        box-shadow: inset 0 0 18px rgba(255, 235, 180, 0.55),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+          0 0 18px rgba(246, 217, 137, 0.35);
+      }
+
+      .toggle-control[aria-pressed="true"] .toggle-thumb::after {
+        transform: translate(17px, -50%);
+        background: linear-gradient(
+          140deg,
+          rgba(255, 255, 255, 1),
+          rgba(255, 245, 220, 0.95)
+        );
+        box-shadow: 0 4px 12px rgba(246, 217, 137, 0.5),
+          0 0 14px rgba(246, 217, 137, 0.35),
+          0 0 0 1px rgba(246, 217, 137, 0.25);
+      }
+
+      .toggle-label {
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+
+      .toggle-hint {
+        font-size: 0.82rem;
+        color: rgba(186, 196, 224, 0.62);
+      }
+
+      @media (max-width: 1080px) {
+        body {
+          padding: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        .layout {
+          grid-template-columns: 1fr;
+          padding: clamp(2.2rem, 6vw, 3rem);
+        }
+
+        .hero-copy {
+          order: 2;
+        }
+
+        .luminous-card {
+          order: 1;
+        }
+
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 1.5rem 1.2rem;
+        }
+
+        .layout {
+          border-radius: 26px;
+          padding: 2rem;
+        }
+
+        .hero-title {
+          letter-spacing: 0.18rem;
+        }
+
+        .hero-sequence {
+          gap: 0.6rem;
+        }
+
+        .hero-benefits {
+          gap: 0.75rem;
+        }
+
+        .cta-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .cta-text {
+          align-items: center;
+          text-align: center;
+        }
+
+        .hero-tagline {
+          letter-spacing: 0.18em;
+        }
+
+        .card-details span {
+          align-items: flex-start;
+        }
+
+        .toggle-control {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <main class="layout">
+        <section class="hero-copy">
+          <div class="hero-sequence" aria-label="Основний call-to-action">
+            <h1 class="hero-title">MF PRIME CLUB</h1>
+            <span class="hero-sequence-arrow" aria-hidden="true">↓</span>
+            <p class="hero-accent">Доступ назавжди</p>
+            <span class="hero-sequence-arrow" aria-hidden="true">↓</span>
+            <div class="cta-group">
+              <button class="cta-button" type="button">
+                <span class="cta-logo">
+                  <img src="2.png" alt="Логотип MF Prime Club" loading="lazy" />
+                </span>
+                <span class="cta-text">
+                  <span>Отримати доступ</span>
+                  <span>Вступити до клубу</span>
+                </span>
+              </button>
+              <p class="hero-tagline">no risk — no porsche</p>
+            </div>
+          </div>
+          <p class="hero-description">
+            Закритий простір для трейдерів і фаундерів, де обмінюємося робочими стратегіями,
+            підтримуємо один одного та фіксуємо можливості ще до того, як їх помічає ринок.
+          </p>
+          <ul class="hero-benefits" aria-label="Основні переваги">
+            <li>📊 Живі сесії з розбором угод та управління ризиками</li>
+            <li>🧠 Закритий чат без випадкових людей і без шуму</li>
+            <li>🚀 Доступ до нових наративів першої хвилі та запусків</li>
+          </ul>
+        </section>
+
+        <aside class="luminous-card" aria-live="polite">
+          <div class="logo-carousel" aria-hidden="true">
+            <img
+              src="1.png"
+              alt="Логотип клубу — варіант 1"
+              class="logo-slide active"
+              loading="lazy"
+            />
+            <img
+              src="2.png"
+              alt="Логотип клубу — варіант 2"
+              class="logo-slide"
+              loading="lazy"
+            />
+            <img
+              src="3.png"
+              alt="Логотип клубу — варіант 3"
+              class="logo-slide"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card-content">
+            <div class="card-divider"></div>
+
+            <div>
+              <p class="card-title">PREMIUM ACCESS</p>
+              <p class="card-subtext">Закритий криптоклуб для обраних трейдерів.</p>
+            </div>
+
+            <div class="card-details">
+              <span>⚡ Ексклюзивні угоди в реальному часі</span>
+              <span>🧠 Інсайти з особистої практики</span>
+              <span>🛰️ Навігація по нових ринкових трендах</span>
+            </div>
+
+            <button
+              class="toggle-control"
+              type="button"
+              aria-pressed="false"
+              aria-label="Перемкнути підсвічування карти"
+            >
+              <span class="toggle-thumb"></span>
+              <span class="toggle-label">Світло</span>
+              <span class="toggle-hint">Ефект сяйва</span>
+            </button>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const slides = Array.from(document.querySelectorAll(".logo-slide"));
+        const toggleBtn = document.querySelector(".toggle-control");
+        const luminousCard = document.querySelector(".luminous-card");
+        let currentIndex = 0;
+
+        if (slides.length > 1) {
+          setInterval(() => {
+            slides[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add("active");
+          }, 3000);
+        }
+
+        if (toggleBtn && luminousCard) {
+          toggleBtn.addEventListener("click", () => {
+            const isPressed = toggleBtn.getAttribute("aria-pressed") === "true";
+            toggleBtn.setAttribute("aria-pressed", String(!isPressed));
+            luminousCard.classList.toggle("is-lit", !isPressed);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
