@@ -40,10 +40,13 @@ const accessHighlights = [
   "Мотивація та дорожня карта: як стартувати, коли не знаєш, з чого почати"
 ];
 
-const priceMilestones = [249, 457, 655, 990, 1395, 1999];
+const oldPrice = 249;
+const currentPrice = 450;
+
+const priceMilestones = [oldPrice, currentPrice, 457, 655, 990, 1395, 1999];
 const paymentAddress = "TQjvmy6n1zpvNQ7daVmjALhe8gvQAVLrgY";
 const supportTemplate = `Привіт! Оплатив доступ до MF Prime Club.
-Сума: 249 USDT (TRC20)
+Сума: ${currentPrice} USDT (TRC20)
 Хеш транзакції: ...
 Мій нікнейм / контакт: ...`;
 const closingHighlights = [
@@ -278,31 +281,41 @@ export default function App() {
             Чому варто приєднатися зараз
           </h2>
           <p className="section-subtitle">
-            Сьогодні доступ коштує 249&nbsp;USDT. З кожним новим кейсом і доданою цінністю ціна зростає. Зафіксуй
-            найнижчу вартість, поки вона доступна.
+            Було{" "}
+            <span className="price-old">{oldPrice}&nbsp;USDT</span>. Зараз{" "}
+            <span className="price-new">{currentPrice}&nbsp;USDT</span>. З кожним новим кейсом і доданою цінністю ціна
+            зростає. Зафіксуй вартість, поки вона доступна.
           </p>
           <div className="price-timeline" role="list">
             {priceMilestones.map((price, index) => {
-              const isCurrent = index === 0;
-              const isFuture = index === priceMilestones.length - 1;
+              const isPast = price === oldPrice;
+              const isCurrent = price === currentPrice;
+              const isLast = index === priceMilestones.length - 1;
+
+              let chipClass = "price-chip";
+              if (isPast) chipClass += " price-chip-past";
+              if (isCurrent) chipClass += " price-chip-current";
+              if (isLast) chipClass += " price-chip-future";
+
               return (
                 <div
                   key={price}
                   role="listitem"
-                  className={`price-chip ${isCurrent ? "price-chip-current" : ""} ${
-                    isFuture ? "price-chip-future" : ""
-                  }`}
+                  className={chipClass}
                 >
                   <span className="price-value">{price}</span>
                   <span className="price-label">USDT</span>
+                  {isPast && <span className="price-hint">було</span>}
                   {isCurrent && <span className="price-hint">сьогодні</span>}
-                  {isFuture && <span className="price-hint">планова</span>}
+                  {isLast && <span className="price-hint">планова</span>}
                 </div>
               );
             })}
           </div>
           <button className="primary-cta" type="button" onClick={() => scrollToSection("payment")}>
-            Забрати доступ за 249 USDT
+            Забрати доступ за{" "}
+            <span className="price-new">{currentPrice}</span>{" "}
+            USDT
           </button>
         </section>
 
@@ -312,7 +325,10 @@ export default function App() {
           </h2>
           <div className="payment-panel">
             <div className="payment-summary">
-              <p className="payment-amount">Сума до оплати — 249 USDT (мережа TRC20)</p>
+              <p className="payment-amount">
+                Сума до оплати →{" "}
+                <span className="price-new">{currentPrice} USDT</span> (мережа TRC20)
+              </p>
               <p className="payment-note">
                 Перекази приймаються тільки на адресу нижче. Після оплати обовʼязково надішліть підтвердження
                 в підтримку, щоб отримати доступ.
@@ -361,7 +377,9 @@ export default function App() {
         <section id="cta" className="scroll-section closing-section">
           <h2 className="section-title">Готовий приєднатися до MF Prime Club?</h2>
           <p className="section-subtitle closing-lead">
-            Зафіксуй довічний доступ за 249&nbsp;USDT — після підтвердження оплати ти миттєво потрапляєш у канал і чат.
+            Зафіксуй довічний доступ →{" "}
+            <span className="price-new">{currentPrice}&nbsp;USDT</span> — після підтвердження оплати ти миттєво
+            потрапляєш у канал і чат.
           </p>
           <ul className="closing-list" aria-label="Що відкривається після оплати">
             {closingHighlights.map((item) => (
@@ -370,7 +388,9 @@ export default function App() {
           </ul>
           <div className="cta-actions">
             <button className="primary-cta" type="button" onClick={() => scrollToSection("payment")}>
-              Оплатити 249 USDT
+              Оплатити{" "}
+              <span className="price-new">{currentPrice}</span>{" "}
+              USDT
             </button>
             <button className="ghost-cta" type="button" onClick={() => scrollToSection("benefits")}>
               Переглянути, що всередині
@@ -386,4 +406,4 @@ export default function App() {
   );
 }
 
- 
+

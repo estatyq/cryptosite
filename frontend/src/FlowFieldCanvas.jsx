@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createNoise2D } from "simplex-noise";
 
-const MAX_PARTICLES = 2400;
+const MAX_PARTICLES = 1000;
 const RESOLUTION = 18;
 const NOISE_SCALE = 0.018;
 const BASE_SPEED = 0.5;
@@ -62,27 +62,38 @@ const FlowFieldCanvas = ({ accentRgb, isLuminous }) => {
       const accentArray = Array.isArray(currentAccent)
         ? currentAccent
         : typeof currentAccent === "string"
-        ? currentAccent.trim().split(/[ ,]+/).map(Number)
-        : [160, 186, 255];
-      const accentColor = `${accentArray[0]}, ${accentArray[1]}, ${accentArray[2]}`;
+          ? currentAccent.trim().split(/[ ,]+/).map(Number)
+          : [160, 186, 255];
+      // Use full opaque color here, control alpha via globalAlpha
+      const baseColor = `rgb(${accentArray[0]}, ${accentArray[1]}, ${accentArray[2]})`;
+
       const fadeStrength = glowActive ? 0.08 : 0.14;
       const particleBoost = glowActive ? 1.2 : 0.8;
 
       animationRef.current = window.requestAnimationFrame(evolve);
       time += 0.003;
 
-      ctx.fillStyle = `rgba(6, 7, 12, ${fadeStrength})`;
+      // Clear/Overlay with fade
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = fadeStrength;
+      ctx.fillStyle = "#06070c"; // Hardcoded background color for better perf than template interpolation
       ctx.fillRect(0, 0, width, height);
 
       addParticles();
+
+      // Render Particles
+      ctx.fillStyle = baseColor;
+      // We can use lighter for a glowing effect if desired, but source-over is standard
+      ctx.globalCompositeOperation = "lighter";
 
       for (let i = 0; i < particles.length; i += 1) {
         const p = particles[i];
         p.opacity -= p.fade;
 
-        const angle =
-          noise2D(p.x * NOISE_SCALE, p.y * NOISE_SCALE + time) * Math.PI * 2 +
-          noise2D((p.x + time) * NOISE_SCALE, (p.y - time) * NOISE_SCALE) * 0.4;
+        // Optimized noise: reduce complexity if needed, but keeping visual quality is priority
+        const noiseVal1 = noise2D(p.x * NOISE_SCALE, p.y * NOISE_SCALE + time);
+        const noiseVal2 = noise2D((p.x + time) * NOISE_SCALE, (p.y - time) * NOISE_SCALE);
+        const angle = noiseVal1 * Math.PI * 2 + noiseVal2 * 0.4;
 
         p.x += Math.cos(angle) * p.speed * particleBoost;
         p.y += Math.sin(angle) * p.speed * particleBoost;
@@ -96,9 +107,13 @@ const FlowFieldCanvas = ({ accentRgb, isLuminous }) => {
 
         const intensity = glowActive ? 0.4 : 0.18;
         const alpha = Math.min(intensity + p.opacity * 0.6, 0.85);
-        ctx.fillStyle = `rgba(${accentColor}, ${alpha})`;
+
+        ctx.globalAlpha = alpha;
         ctx.fillRect(p.x, p.y, 1.2, 1.2);
       }
+      // Reset global alpha
+      ctx.globalAlpha = 1.0;
+      ctx.globalCompositeOperation = "source-over";
     };
 
     const handlePointerMove = (event) => {
