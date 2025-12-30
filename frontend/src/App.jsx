@@ -45,6 +45,8 @@ const currentPrice = 450;
 
 const priceMilestones = [oldPrice, currentPrice, 457, 655, 990, 1395, 1999];
 const paymentAddress = "TQjvmy6n1zpvNQ7daVmjALhe8gvQAVLrgY";
+const supportUrl = "https://t.me/mf_assistance";
+const supportHandle = "@mf_assistance";
 const supportTemplate = `Привіт! Оплатив доступ до MF Prime Club.
 Сума: ${currentPrice} USDT (TRC20)
 Хеш транзакції: ...
@@ -172,6 +174,7 @@ export default function App() {
           <button type="button" onClick={() => scrollToSection("benefits")}>Що всередині</button>
           <button type="button" onClick={() => scrollToSection("pricing")}>Чому зараз</button>
           <button type="button" onClick={() => scrollToSection("payment")}>Оплата</button>
+          <button type="button" onClick={() => scrollToSection("support")}>Підтримка</button>
         </nav>
         <button className="site-header-cta" type="button" onClick={() => scrollToSection("payment")}>
           Приєднатися
@@ -359,7 +362,7 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <div className="payment-support">
+            <div className="payment-support" id="support">
               <p>
                 Після переказу надішли у підтримку скрін платежу та хеш-транзакцію. Щоб не забути деталі, скористайся
                 готовим шаблоном.
@@ -367,9 +370,35 @@ export default function App() {
               <pre className="support-template" aria-label="Шаблон повідомлення для підтримки">
                 {supportTemplate}
               </pre>
-              <button className="copy-button" type="button" onClick={handleTemplateCopy}>
-                {templateCopyLabel}
-              </button>
+              <div className="support-actions">
+                <button className="copy-button" type="button" onClick={handleTemplateCopy}>
+                  {templateCopyLabel}
+                </button>
+                <a
+                  className="copy-button support-link"
+                  href={supportUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Відкрити підтримку в Telegram"
+                >
+                  <span className="support-link-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M20.77 4.43L2.9 11.33c-1.22.49-1.21 1.17-.22 1.47l4.58 1.43 1.75 5.27c.21.58.11.81.73.81.48 0 .69-.22.95-.48l2.2-2.14 4.58 3.38c.84.46 1.44.22 1.65-.78l3-14.13c.3-1.22-.46-1.77-1.35-1.38z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M8.23 14.04l10.63-6.72c.53-.33 1.02-.15.62.2l-8.61 7.77-.33 3.55c-.05.5-.28.62-.6.2l-1.71-2.77z"
+                        fill="rgba(0, 0, 0, 0.24)"
+                      />
+                    </svg>
+                  </span>
+                  <span className="support-link-text">
+                    <span>Підтримка</span>
+                    <span>{supportHandle}</span>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </section>

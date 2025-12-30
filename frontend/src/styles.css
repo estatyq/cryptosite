@@ -1361,6 +1361,45 @@ body::after {
   line-height: 1.7;
 }
 
+.support-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.support-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.support-link-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  color: rgba(120, 204, 255, 0.92);
+}
+
+.support-link-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.support-link-text {
+  display: grid;
+  gap: 0.05rem;
+  line-height: 1.1;
+}
+
+.support-link-text span:last-child {
+  font-size: 0.85em;
+  opacity: 0.82;
+  text-transform: none;
+}
+
 .support-template {
   margin: 0;
   background: rgba(0, 0, 0, 0.38);
