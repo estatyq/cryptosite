@@ -43,7 +43,7 @@ const accessHighlights = [
 const oldPrice = 249;
 const currentPrice = 450;
 
-const priceMilestones = [oldPrice, currentPrice, 457, 655, 990, 1395, 1999];
+const priceMilestones = [oldPrice, currentPrice, 655, 990, 1395, 1999];
 const paymentAddress = "TQjvmy6n1zpvNQ7daVmjALhe8gvQAVLrgY";
 const supportUrl = "https://t.me/mf_assistance";
 const supportHandle = "@mf_assistance";
